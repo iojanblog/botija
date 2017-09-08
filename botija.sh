@@ -53,11 +53,23 @@ function send_text {
 #
 # send video logic
 function send_video {
-    arg_video="$@"
+    arg_file="$@"
     for hh in $households; do
-        curl -s -X POST "https://api.telegram.org/bot$token/sendVideo" -F "chat_id=$hh" -F "video=@$arg_video" -F "disable_notification=true" &
+        curl -s -X POST "https://api.telegram.org/bot$token/sendVideo" -F "chat_id=$hh" -F "video=@$arg_file" -F "disable_notification=true" &
     done    
-    echo "[send_video] $arg_video"
+    echo "[send_video] $arg_file"
+    wait
+}
+
+
+#
+# send photo logic
+function send_photo {
+    arg_file="$@"
+    for hh in $households; do
+        curl -s -X POST "https://api.telegram.org/bot$token/sendPhoto" -F "chat_id=$hh" -F "photo=@$arg_file" -F "disable_notification=true" &
+    done    
+    echo "[send_photo] $arg_file"
     wait
 }
 
@@ -73,8 +85,12 @@ send_text)
    ;;  
 send_video)
    shift && send_video $@
-   ;;     
+   ;;    
+send_photo)
+   shift && send_photo $@
+   ;;       
 *)
    echo "$bl_usage: $0 <$bl_command>"
-   echo "$bl_command_guide receive, send_text, send_video"
+   echo "$bl_command_guide receive, send_text, send_video, send_photo"
+   exit 1
 esac

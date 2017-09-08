@@ -15,6 +15,7 @@ function install {
         height 768 
         event_gap 10
         webcontrol_port 9999 
+        locate_motion_mode on
         on_movie_end `cd $local_dir && pwd`/plugcallback.camera.sh video %f 
         on_picture_save `cd $local_dir && pwd`/plugcallback.camera.sh photo %f " | sudo tee -a /etc/motion/motion.conf
     sudo service motion start    
