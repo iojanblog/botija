@@ -6,6 +6,18 @@ source `dirname $0`/botija.init.sh
 
 
 #
+# listen logic
+function listen {
+    send_text "$bl_listen"
+    while true
+    do
+        receive
+        sleep $delay_timeout
+    done
+}
+
+
+#
 # receive logic
 function receive {
     offset=`cat $tmp_dir/offset.txt 2>/dev/null | tail -1 2>/dev/null`
@@ -79,6 +91,9 @@ function send_photo {
 #
 # dispatch commands
 case "$1" in 
+listen)
+   shift && listen $@
+   ;;
 receive)
    shift && receive $@
    ;;
@@ -93,6 +108,6 @@ send_photo)
    ;;       
 *)
    echo "$bl_usage: $0 <$bl_command>"
-   echo "$bl_command_guide receive, send_text, send_video, send_photo"
+   echo "$bl_command_guide listen, receive, send_text, send_video, send_photo"
    exit 1
 esac
