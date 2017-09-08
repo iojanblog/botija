@@ -20,8 +20,8 @@ function receive {
     chat_id=`cat $tmp_dir/result.out | jq '.result[].message.chat.id'`
     text=`cat $tmp_dir/result.out | jq '.result[].message.text'`
 
-    [ "`echo $households | grep -w $chat_id | wc -l`" -eq "0" ] && echo "$bl_insecure_chat $chat_id" && return 3
     echo "$((update_id+1))" > $tmp_dir/offset.txt
+    [ "`echo $households | grep -w $chat_id | wc -l`" -eq "0" ] && echo "$bl_insecure_chat $chat_id" && return 3
 
     send_text "$bl_message $text $bl_from $first_name"
     normal_text=`echo $text | awk '{print tolower($0)}' | sed 's/"//g'`

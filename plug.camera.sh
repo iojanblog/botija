@@ -9,12 +9,15 @@ source `dirname $0`/botija.init.sh
 # install logic
 function install {
     sudo apt-get install motion libav-tools
-    sudo echo "\
-        width 1024
-        height 768
-        webcontrol_port 9999 \
-        on_movie_end `dirname $0`/plugcallback.camera.sh motion %f \
-        " >> /etc/motion/motion.conf
+    echo "start_motion_daemon=yes" | sudo tee -a /etc/default/motion 
+    echo "
+        width 1024 
+        height 768 
+        event_gap 10
+        webcontrol_port 9999 
+        on_movie_end `cd $local_dir && pwd`/plugcallback.camera.sh video %f 
+        on_picture_save `cd $local_dir && pwd`/plugcallback.camera.sh photo %f " | sudo tee -a /etc/motion/motion.conf
+    sudo service motion start    
     result="$?" && $local_dir/botija.sh send_text "$bl_camera_install ($result)"
 }
 
