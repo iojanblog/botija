@@ -1,10 +1,10 @@
 # botija
-=====
 BOT based on telegram for home automation on top of raspberry pi
+
 
 ### Basic installation
 
-Clone from your raspberry pi, and configure it copying sample file. Only values at "Telegram section" are required
+Clone this repo from your raspberry pi, and configure it based on sample file. Only values at "Telegram section" are required
 ```shell
 cp botija.cfg.sample botija.cfg
 vi botija.cfg
@@ -15,9 +15,10 @@ Check BOT readiness on your Telegram Chat
 ./plug.status.sh
 ```
 
+
 ### Camera plugin
 
-Enable your raspicam and test it works
+Enable your raspicam and test if it works
 ```shell
 sudo raspi-config
 raspistill -o test1.jpg
