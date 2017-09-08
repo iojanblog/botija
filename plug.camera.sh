@@ -42,7 +42,7 @@ function stop_motion {
 
 #
 # start motion logic
-function stop_motion {
+function start_motion {
     curl -s -X GET "http://localhost:9999/0/detection/start"
     [ "$?" -ne "0" ] && $local_dir/botija.sh send_text "$bl_failed_motion"
 }
