@@ -1,5 +1,5 @@
 
-##.......... Telegram BOT section ............
+##.......... Telegram section ............
 
 # households: telegram subscribed userids, space separated
 households="111111111 222222222"
@@ -12,6 +12,9 @@ pull_timeout=300
 
 # delay_timeout: delay in seconds for message processing
 delay_timeout=10
+
+
+##.......... Language section ............
 
 # language: pick of available languages: "en"
 language="en"
