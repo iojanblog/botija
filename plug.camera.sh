@@ -17,8 +17,8 @@ function install {
         webcontrol_port 9999 
         locate_motion_mode on
         output_pictures off
-        on_movie_end `cd $local_dir && pwd`/plugcallback.camera.sh video %f 
-        on_picture_save `cd $local_dir && pwd`/plugcallback.camera.sh photo %f " | sudo tee -a /etc/motion/motion.conf
+        on_movie_end `cd $local_dir && pwd`/plug.camera.callback.sh video %f 
+        on_picture_save `cd $local_dir && pwd`/plug.camera.callback.sh photo %f " | sudo tee -a /etc/motion/motion.conf
     sudo service motion start    
     result="$?" && $local_dir/botija.sh send_text "$bl_camera_install ($result)"
 }
