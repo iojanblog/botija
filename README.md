@@ -37,5 +37,5 @@ Install the plugin
 ./plug.august.sh install <offlineKey>
 ```
 
-Ask the BOT to open your door at your Telegram Chat
->open door    
+Ask the BOT to unlock your door at your Telegram Chat
+>unlock door    

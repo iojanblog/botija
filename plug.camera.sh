@@ -8,7 +8,7 @@ source `dirname $0`/botija.init.sh
 #
 # install logic
 function install {
-    sudo apt-get install motion libav-tools
+    sudo apt-get -y install motion libav-tools
     echo "start_motion_daemon=yes" | sudo tee -a /etc/default/motion 
     echo "
         width 1280 
