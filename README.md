@@ -1,18 +1,26 @@
 # botija
 BOT based on telegram for home automation on top of raspberry pi
 
-### Basic installation
+### BOT setup
 
-Clone this repo from your raspberry pi, and configure it based on sample file. Only values at "Telegram section" are required
+Install telegram and chat @BotFather to create your BOT, at the en it should give you a token for HTTP API
+>> /start
+>> /newbot
+
+Clone this repo and make a new config file based on `botija.cfg.sample`, then configure the token @BotFather gave you
 ```shell
-cp botija.cfg.sample botija.cfg
+git clone https://github.com/iojanblog/botija.git && cd botija
 vi botija.cfg
 ```
 
-Check BOT readiness at your Telegram Chat
+Add the listener to your crontab, and then start to listen for the first time
 ```shell
-./plug.status.sh
+(crontab -l; echo "@reboot `pwd`/botija.sh listen >> `pwd`/tmp/cron.out 2>&1 &") | crontab -
+./botija.sh listen
 ```
+
+Ask your new BOT to send you status
+>status
 
 ### Camera plugin
 
