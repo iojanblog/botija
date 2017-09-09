@@ -3,10 +3,6 @@
 # BOT logic
 #
 source `dirname $0`/botija.init.sh
-
-
-# 
-# strong dependences
 command -v jq >/dev/null 2>&1 || sudo apt-get -y install jq
 
 
