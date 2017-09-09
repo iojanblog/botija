@@ -18,9 +18,3 @@ delay_timeout=10
 
 # language: pick of available languages: "en"
 language="en"
-
-
-##............ Plugins section .............
-
-# august offline key
-august_offlineKey="123456789ABCDEF123456789ABCDEF12"

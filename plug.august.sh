@@ -8,11 +8,13 @@ source `dirname $0`/botija.init.sh
 #
 # install logic
 function install {
+    [ -z "$1" ] && echo "${bl_missing_argument}: offlineKey" && return 1
+
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
     sudo apt-get install nodejs && sudo chown -R $(whoami) /usr/{lib/node_modules,bin,share}
 
     npm install -g bluetooth-hci-socket augustctl
-    echo "{ \"offlineKey\": \"${august_offlineKey}\", \"offlineKeyOffset\": 1 }" > /usr/lib/node_modules/augustctl/config.json
+    echo "{ \"offlineKey\": \"${1}\", \"offlineKeyOffset\": 1 }" > /usr/lib/node_modules/augustctl/config.json
     sudo setcap cap_net_raw+eip $(readlink -f `which node`)
 
     augustctl lock   
@@ -50,5 +52,5 @@ unlock)
    ;;       
 *)
    echo "$bl_usage: $0 <$bl_command>"
-   echo "$bl_command_guide install, lock, unlock"
+   echo "$bl_command_guide lock, unlock, install <offlineKey>"
 esac

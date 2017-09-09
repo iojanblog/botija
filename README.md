@@ -34,7 +34,7 @@ Ask the BOT to send you a photo at your Telegram Chat
 
 Install the plugin
 ```shell
-./plug.august.sh install
+./plug.august.sh install <offlineKey>
 ```
 
 Ask the BOT to open your door at your Telegram Chat
