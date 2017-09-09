@@ -21,8 +21,9 @@ function install {
 
 
 function install_nodejs {
-    curl https://nodejs.org/dist/v7.8.0/node-v7.8.0-linux-armv7l.tar.xz | tar xvz
+    curl -SL https://nodejs.org/dist/v7.8.0/node-v7.8.0-linux-armv7l.tar.xz | tar xJv
     mv node-v7.8.0-linux-armv7l $tmp_dir/nodejs
+    export PATH=$tmp_dir/nodejs/bin:$PATH
 }
 
 
