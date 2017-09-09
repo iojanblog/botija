@@ -18,9 +18,3 @@ delay_timeout=10
 
 # language: pick of available languages: "en"
 language="en"
-
-
-##............ Dependency section .............
-
-# nodejs_bin_path: nodejs path when not installed as package
-nodejs_bin_path=""

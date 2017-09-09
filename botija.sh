@@ -3,11 +3,24 @@
 # BOT logic
 #
 source `dirname $0`/botija.init.sh
+command -v jq >/dev/null 2>&1 || sudo apt-get -y install jq
+
+
+#
+# listen logic
+function listen {
+    send_text "$bl_listen"
+    while true
+    do
+        receive
+        sleep $delay_timeout
+    done
+}
 
 
 #
 # receive logic
-function receive {
+function receive {    
     offset=`cat $tmp_dir/offset.txt 2>/dev/null | tail -1 2>/dev/null`
     curl -s -X GET "https://api.telegram.org/bot$token/getUpdates?limit=1&allowed_updates=message&offset=$offset&timeout=$pull_timeout" > $tmp_dir/result.out
 
@@ -34,6 +47,12 @@ function receive {
         $local_dir/plug.camera.sh start_motion
     elif [ "$normal_text" = "$bc_stop_motion" ]; then
         $local_dir/plug.camera.sh stop_motion
+    elif [ "$normal_text" = "$bc_upgrade" ]; then
+        $local_dir/plug.upgrade.sh
+    elif [ "$normal_text" = "$bc_august_lock" ]; then
+        $local_dir/plug.august.sh lock
+    elif [ "$normal_text" = "$bc_august_unlock" ]; then
+        $local_dir/plug.august.sh unlock
     else
         curl -s -X GET "https://api.telegram.org/bot$token/sendMessage" --data-urlencode "chat_id=$chat_id" --data-urlencode "text=$bl_unknown $text" >/dev/null &
     fi    
@@ -79,20 +98,23 @@ function send_photo {
 #
 # dispatch commands
 case "$1" in 
+listen)
+    shift && listen $@
+    ;;
 receive)
-   shift && receive $@
-   ;;
+    shift && receive $@
+    ;;
 send_text)
-   shift && send_text $@
-   ;;  
+    shift && send_text $@
+    ;;  
 send_video)
-   shift && send_video $@
-   ;;    
+    shift && send_video $@
+    ;;    
 send_photo)
-   shift && send_photo $@
-   ;;       
+    shift && send_photo $@
+    ;;       
 *)
-   echo "$bl_usage: $0 <$bl_command>"
-   echo "$bl_command_guide receive, send_text, send_video, send_photo"
-   exit 1
+    echo "$bl_usage: $0 <$bl_command>"
+    echo "$bl_command_guide listen, receive, send_text, send_video, send_photo"
+    exit 1
 esac
