@@ -20,6 +20,8 @@ function listen {
 #
 # receive logic
 function receive {
+    command -v jq >/dev/null 2>&1 || sudo apt-get install jq
+    
     offset=`cat $tmp_dir/offset.txt 2>/dev/null | tail -1 2>/dev/null`
     curl -s -X GET "https://api.telegram.org/bot$token/getUpdates?limit=1&allowed_updates=message&offset=$offset&timeout=$pull_timeout" > $tmp_dir/result.out
 
@@ -48,6 +50,10 @@ function receive {
         $local_dir/plug.camera.sh stop_motion
     elif [ "$normal_text" = "$bc_upgrade" ]; then
         $local_dir/plug.upgrade.sh
+    elif [ "$normal_text" = "$bc_august_lock" ]; then
+        $local_dir/plug.august.sh lock
+    elif [ "$normal_text" = "$bc_august_unlock" ]; then
+        $local_dir/plug.august.sh unlock
     else
         curl -s -X GET "https://api.telegram.org/bot$token/sendMessage" --data-urlencode "chat_id=$chat_id" --data-urlencode "text=$bl_unknown $text" >/dev/null &
     fi    

@@ -18,8 +18,3 @@ config_file="$local_dir/botija.cfg"
 language_file="$local_dir/lang.${language}.cfg"
 [[ ! -f $language_file ]] && language_file="$local_dir/lang.en.cfg"
 [[ -f "$language_file" ]] && source $language_file || file $language_file
-
-#
-# setup path
-[ "$nodejs_bin_path" != "" ] && export PATH=${nodejs_bin_path}:$PATH
-command -v node >/dev/null 2>&1 || command node
