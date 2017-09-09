@@ -20,7 +20,7 @@ delay_timeout=10
 language="en"
 
 
-##............ Dependency section .............
+##............ Plugins section .............
 
-# nodejs_bin_path: nodejs path when not installed as package
-nodejs_bin_path=""
+# august offline key
+august_offlineKey="123456789ABCDEF123456789ABCDEF12"

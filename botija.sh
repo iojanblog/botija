@@ -48,6 +48,10 @@ function receive {
         $local_dir/plug.camera.sh stop_motion
     elif [ "$normal_text" = "$bc_upgrade" ]; then
         $local_dir/plug.upgrade.sh
+    elif [ "$normal_text" = "$bc_august_lock" ]; then
+        $local_dir/plug.august.sh lock
+    elif [ "$normal_text" = "$bc_august_unlock" ]; then
+        $local_dir/plug.august.sh unlock
     else
         curl -s -X GET "https://api.telegram.org/bot$token/sendMessage" --data-urlencode "chat_id=$chat_id" --data-urlencode "text=$bl_unknown $text" >/dev/null &
     fi    
