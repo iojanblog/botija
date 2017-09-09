@@ -3,8 +3,7 @@ BOT based on telegram for home automation on top of raspberry pi
 
 ### BOT setup
 
-Install telegram and chat @BotFather to create your BOT, at the en it should give you a token for HTTP API
->> /start
+Install telegram and chat @BotFather to create your BOT, at the en it should give you a token for HTTP API, take note
 >> /newbot
 
 Clone this repo and make a new config file based on `botija.cfg.sample`, then configure the token @BotFather gave you
@@ -19,7 +18,7 @@ Add the listener to your crontab, and then start to listen for the first time
 ./botija.sh listen
 ```
 
-Ask your new BOT to send you status
+Chat with your new BOT, ask to send you status
 >status
 
 ### Camera plugin
@@ -35,7 +34,7 @@ Install the plugin
 ./plug.camera.sh install
 ```
 
-Ask the BOT to send you a photo at your Telegram Chat
+Ask your BOT to send you a photo at your Telegram Chat
 >photo    
 
 ### August plugin
@@ -45,5 +44,5 @@ Install the plugin
 ./plug.august.sh install <offlineKey>
 ```
 
-Ask the BOT to unlock your door at your Telegram Chat
+Ask your BOT to unlock your door at your Telegram Chat
 >unlock door    
