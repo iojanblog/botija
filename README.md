@@ -3,8 +3,8 @@ BOT based on telegram for home automation on top of raspberry pi
 
 ### BOT setup
 
-Install telegram and chat @BotFather to create your BOT, at the en it should give you a token for HTTP API, take note
->> /newbot
+Install telegram and chat @BotFather to create your own BOT, at the end it should give you a token for HTTP API, take note
+>/newbot
 
 Clone this repo and make a new config file based on `botija.cfg.sample`, then configure the token @BotFather gave you
 ```shell
@@ -18,7 +18,7 @@ Add the listener to your crontab, and then start to listen for the first time
 ./botija.sh listen
 ```
 
-Chat with your new BOT, ask to send you status
+Chat with your new BOT, ask him send you status
 >status
 
 ### Camera plugin
