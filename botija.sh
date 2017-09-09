@@ -20,6 +20,8 @@ function listen {
 #
 # receive logic
 function receive {
+    command -v jq >/dev/null 2>&1 || sudo apt-get install jq
+    
     offset=`cat $tmp_dir/offset.txt 2>/dev/null | tail -1 2>/dev/null`
     curl -s -X GET "https://api.telegram.org/bot$token/getUpdates?limit=1&allowed_updates=message&offset=$offset&timeout=$pull_timeout" > $tmp_dir/result.out
 
