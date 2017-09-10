@@ -13,6 +13,7 @@ function listen {
     while true
     do
         receive
+        $local_dir/plug.nearby.sh scan &
         sleep $delay_timeout
     done
 }
