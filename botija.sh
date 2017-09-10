@@ -9,7 +9,9 @@ command -v jq >/dev/null 2>&1 || sudo apt-get -y install jq
 #
 # listen logic
 function listen {
+    sleep $delay_timeout
     send_text "$bl_listen"
+
     while true
     do
         receive
