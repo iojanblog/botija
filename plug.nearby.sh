@@ -23,7 +23,7 @@ function scan {
         [ "`echo $nearby_wify_mac | grep -w $mac | wc -l`" -gt "0" ] && echo $mac >> $tmp_dir/scan.found.out
     done 
 
-    if [ "`diff $tmp_dir/scan.found.out $tmp_dir/scan.prev.out | wc -l`" -gt "0" ]; then
+    if [ "`diff $tmp_dir/scan.found.out $tmp_dir/scan.prev.out 2>/dev/null | wc -l`" -gt "0" ]; then
         found=`wc -l $tmp_dir/scan.found.out`
         $local_dir/botija.sh send_text "$bl_nearby_found $found"
     fi
