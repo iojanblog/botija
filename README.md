@@ -6,10 +6,10 @@ BOT based on telegram for home automation on top of raspberry pi
 Install telegram and chat @BotFather to create your own BOT, at the end it should give you a token for HTTP API, take note
 >/newbot
 
-Clone this repo and make a new config file based on `botija.cfg.sample`, then configure the token @BotFather gave you
+Clone this repo and make a new `botija.cfg` file based on sample provided, then configure the token and households
 ```shell
-git clone https://github.com/iojanblog/botija.git && cd botija
-vi botija.cfg
+token="333333333:abcdefgABCDEFG_abcdefgABCDEFGabcdefg"
+households="111111111 222222222"
 ```
 
 Add the listener to your crontab, and then start to listen for the first time
@@ -46,3 +46,15 @@ Install the plugin
 
 Ask your BOT to unlock your door at your Telegram Chat
 >unlock door    
+
+### Nearby plugin
+
+Install the plugin
+```shell
+./plug.nearby.sh install 
+```
+
+Edit your `botija.cfg` file, setting nearby_wify_mac parameter
+```shell
+nearby_wify_mac="11:11:11:11:11:11 ff:ff:ff:ff:ff:ff"
+```
