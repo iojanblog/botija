@@ -27,6 +27,7 @@ function receive {
     offset=`cat $tmp_dir/offset.txt 2>/dev/null | tail -1 2>/dev/null`
     curl -s -X GET "https://api.telegram.org/bot$token/getUpdates?limit=1&allowed_updates=message&offset=$offset&timeout=$pull_timeout" > $tmp_dir/result.out
 
+    echo "[receive] `date`"
     echo "[receive] `cat $tmp_dir/result.out | jq .`"
     [ "`cat $tmp_dir/result.out | jq '.ok'`" != "true" ] && return 1
     [ "`cat $tmp_dir/result.out | jq '.result | length'`" = "0" ] && return 2
