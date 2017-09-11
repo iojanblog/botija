@@ -25,13 +25,14 @@ function scan {
         hcitool cc "$mac" 2>/dev/null && hcitool rssi "$mac" 2>/dev/null && echo "$mac" >> $tmp_dir/scan.found.out
     done
     for mac in `arp-scan --localnet | grep "192.168" | awk '{print tolower($2)}'`; do
-        [ "`echo $nearby_wifi_mac | grep -w $mac | wc -l`" -gt "0" ] && echo $mac >> $tmp_dir/scan.found.out
+        [ "`echo $nearby_wifi_mac | grep -w $mac | wc -l`" -gt "0" ] && echo "$mac" >> $tmp_dir/scan.found.out
     done 
-    cat $tmp_dir/scan.found.out | awk '{print "[nearby] " tolower($0)}'
+    cat $tmp_dir/scan.found.out | awk '{print "[nearby] " $0}'
 
     if [ "`diff $tmp_dir/scan.found.out $tmp_dir/scan.prev.out 2>/dev/null | wc -l`" -gt "0" ]; then
         found=`cat $tmp_dir/scan.found.out | wc -l`
 
+        [ "$found" = "0" ] && $local_dir/botija.sh send_text "$bl_missing_nearby"
         [ "$nearby_empty_lock" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.august.sh lock
         [ "$nearby_empty_motion" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.camera.sh start_motion
     fi
