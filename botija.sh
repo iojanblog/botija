@@ -57,6 +57,8 @@ function receive {
         $local_dir/plug.august.sh lock
     elif [ "$normal_text" = "$bc_august_unlock" ]; then
         $local_dir/plug.august.sh unlock
+    elif [ "$normal_text" = "$bc_nearby_count" ]; then
+        $local_dir/plug.nearby.sh count
     else
         curl -s -X GET "https://api.telegram.org/bot$token/sendMessage" --data-urlencode "chat_id=$chat_id" --data-urlencode "text=$bl_unknown $text" >/dev/null &
     fi    
