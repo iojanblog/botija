@@ -54,7 +54,8 @@ Install the plugin
 ./plug.nearby.sh install 
 ```
 
-Edit your `botija.cfg` file, setting nearby_wify_mac parameter
+Edit your `botija.cfg` file, setting nearby_wifi_mac or nearby_blue_mac parameter
 ```shell
-nearby_wify_mac="11:11:11:11:11:11 ff:ff:ff:ff:ff:ff"
+nearby_wifi_mac="11:11:11:11:11:11 ff:ff:ff:ff:ff:ff"
+nearby_blue_mac="22:22:22:22:22:22 ee:ee:ee:ee:ee:ee"
 ```
