@@ -26,10 +26,11 @@ function scan {
 
     if [ "`diff $tmp_dir/scan.found.out $tmp_dir/scan.prev.out 2>/dev/null | wc -l`" -gt "0" ]; then
         found=`cat $tmp_dir/scan.found.out | wc -l`
-        $local_dir/botija.sh send_text "$bl_nearby_found $found"
+        echo "$bl_nearby_found $found"
+        #$local_dir/botija.sh send_text "$bl_nearby_found $found"
 
-        [ "$nearby_empty_lock" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.august.sh lock
-        [ "$nearby_empty_motion" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.camera.sh start_motion
+        #[ "$nearby_empty_lock" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.august.sh lock
+        #[ "$nearby_empty_motion" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.camera.sh start_motion
     fi
 }
 
