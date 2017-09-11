@@ -59,3 +59,6 @@ Edit your `botija.cfg` file, setting nearby_wifi_mac or nearby_blue_mac paramete
 nearby_wifi_mac="11:11:11:11:11:11 ff:ff:ff:ff:ff:ff"
 nearby_blue_mac="22:22:22:22:22:22 ee:ee:ee:ee:ee:ee"
 ```
+
+Ask your BOT for the last count at your Telegram Chat, maybe 5 minutes to refresh
+>nearby count  

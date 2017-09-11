@@ -40,15 +40,26 @@ function scan {
 
 
 #
+# count logic
+function count {
+    found=`cat $tmp_dir/scan.found.out | wc -l`
+    $local_dir/botija.sh send_text "${bl_nearby_count}: $found"
+}
+
+
+#
 # dispatch commands
 case "$1" in 
 install)
-   shift && install $@
-   ;;
+    shift && install $@
+    ;;
 scan)
-   shift && scan $@
-   ;;        
+    shift && scan $@
+    ;;
+count)
+    shift && count $@
+    ;;
 *)
    echo "$bl_usage: $0 <$bl_command>"
-   echo "$bl_command_guide scan, install"
+   echo "$bl_command_guide scan, count, install"
 esac
