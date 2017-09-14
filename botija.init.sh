@@ -18,3 +18,7 @@ config_file="$local_dir/botija.cfg"
 language_file="$local_dir/lang.${language}.cfg"
 [[ ! -f $language_file ]] && language_file="$local_dir/lang.en.cfg"
 [[ -f "$language_file" ]] && source $language_file || file $language_file
+
+# 
+# load mandatory defaults
+[ -z "$pull_timeout"] && pull_timeout=480
