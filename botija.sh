@@ -9,14 +9,14 @@ command -v jq >/dev/null 2>&1 || sudo apt-get -y install jq
 #
 # listen logic
 function listen {
-    sleep $delay_timeout
+    sleep 5
     send_text "$bl_listen"
 
     while true
     do
         receive
         $local_dir/plug.nearby.sh scan &
-        sleep $delay_timeout
+        sleep 5
     done
 }
 
