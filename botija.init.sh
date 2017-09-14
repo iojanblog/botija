@@ -21,4 +21,4 @@ language_file="$local_dir/lang.${language}.cfg"
 
 # 
 # load mandatory defaults
-[ -z "$pull_timeout"] && pull_timeout=480
+[ -z "$pull_timeout" ] && pull_timeout=480
