@@ -35,10 +35,7 @@ function scan {
 
         [ "$found" = "0" ] && $local_dir/botija.sh send_text "$bl_missing_nearby"
         [ "$nearby_empty_lock" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.august.sh lock
-        [ "$nearby_empty_sensor_on" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.camera.sh start_motion
-
-        [ "$prev" = "0" ] && $local_dir/botija.sh send_text "$bl_arrive_nearby"
-        [ "$nearby_arrive_sensor_off" = "true" ] && [ "$prev" = "0" ] && $local_dir/plug.camera.sh stop_motion
+        [ "$nearby_empty_start_motion" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.camera.sh start_motion
     fi
 }
 
