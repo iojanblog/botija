@@ -17,12 +17,13 @@ function install {
 #
 # scan logic
 function scan {
-    [ -z "$nearby_wifi_mac" ] &&  -z "$nearby_blue_mac" ] && echo "${bl_missing_config}: nearby_wifi_mac/nearby_blue_mac" && return 1
+    [ -z "$nearby_wifi_mac" ] && [ -z "$nearby_blue_mac" ] && echo "${bl_missing_config}: nearby_wifi_mac/nearby_blue_mac" && return 1
     mv $tmp_dir/scan.found.out $tmp_dir/scan.prev.out 2>/dev/null
 
     > $tmp_dir/scan.found.out
     for mac in `echo $nearby_blue_mac`; do
         hcitool cc "$mac" 2>/dev/null && hcitool rssi "$mac" 2>/dev/null && echo "$mac" >> $tmp_dir/scan.found.out
+        hcitool dc "$mac" 2>/dev/null
     done
     for mac in `arp-scan --localnet | grep "192.168" | awk '{print tolower($2)}'`; do
         [ "`echo $nearby_wifi_mac | grep -w $mac | wc -l`" -gt "0" ] && echo "$mac" >> $tmp_dir/scan.found.out
