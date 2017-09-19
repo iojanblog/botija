@@ -16,7 +16,10 @@ function listen {
     while true; do
         receive
         sleep 5
-        [ $SECONDS -gt $(( $sec + $pull_timeout )) ] && sec=$SECONDS && $local_dir/plug.nearby.sh scan &
+        if [ $SECONDS -gt $(( $sec + $pull_timeout )) ]; then
+            sec=$SECONDS
+            $local_dir/plug.nearby.sh scan &
+        fi
     done
 }
 
