@@ -12,11 +12,11 @@ function listen {
     sleep 5
     send_text "$bl_listen"
 
-    while true
-    do
+    sec=$SECONDS
+    while true; do
         receive
-        $local_dir/plug.nearby.sh scan &
         sleep 5
+        [ $SECONDS -gt $(( $sec + $pull_timeout )) ] && sec=$SECONDS && $local_dir/plug.nearby.sh scan &
     done
 }
 
