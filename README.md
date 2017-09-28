@@ -62,3 +62,21 @@ nearby_blue_mac="22:22:22:22:22:22 ee:ee:ee:ee:ee:ee"
 
 Ask your BOT for the last count
 >nearby count  
+
+### Livolo plugin
+
+Install the plugin
+```shell
+./plug.livolo.sh install 
+```
+
+Hold any light switch button for 5 seconds and wait for a beep, then execute this
+```shell
+./plug.livolo.sh toggle 3
+```
+It should beep again, signalling it is paired, 
+
+Ask your BOT to toggle lights
+>toggle lights
+Ask your BOT to turn all off
+>lights off
