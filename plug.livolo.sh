@@ -8,7 +8,7 @@ source `dirname $0`/botija.init.sh
 #
 # install logic
 function install {
-    sudo apt-get -y install python-rpi.gpio && python $local_dir/livolo.py off
+    sudo apt-get -y install python-rpi.gpio && python $local_dir/plug.livolo.py off
     $local_dir/botija.sh send_text "$bl_livolo_install ($?)"
 }
 
@@ -16,7 +16,7 @@ function install {
 #
 # toggle logic
 function toggle {
-    python $local_dir/livolo.py "b${1}"
+    python $local_dir/plug.livolo.py "b${1}"
     $local_dir/botija.sh send_text "$bl_livolo_toggle ($?)"
 }
 
@@ -24,7 +24,7 @@ function toggle {
 #
 # off logic
 function off {
-    python $local_dir/livolo.py off
+    python $local_dir/plug.livolo.py off
     $local_dir/botija.sh send_text "$bl_livolo_off ($?)"
 }
 
