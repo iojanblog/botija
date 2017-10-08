@@ -62,10 +62,10 @@ function receive {
         $local_dir/plug.august.sh unlock
     elif [ "$normal_text" = "$bc_nearby_count" ]; then
         $local_dir/plug.nearby.sh count
-    elif [ "$normal_text" = "$bc_livolo_toggle" ]; then
-        $local_dir/plug.livolo.sh toggle 3
     elif [ "$normal_text" = "$bc_livolo_off" ]; then
         $local_dir/plug.livolo.sh off        
+    elif [ echo "$normal_text" | grep -qE "^$bc_livolo_toggle .*" ]; then
+        $local_dir/plug.livolo.sh toggle `echo "$normal_text" | awk -F"$bc_livolo_toggle " '{print $2}'`
     else
         curl -s -X GET "https://api.telegram.org/bot$token/sendMessage" --data-urlencode "chat_id=$chat_id" --data-urlencode "text=$bl_unknown $text" >/dev/null &
     fi    
