@@ -1,5 +1,5 @@
 # botija
-BOT based on telegram for home automation on top of raspberry pi
+BOT based on telegram for home automation on top of raspberry pi. Because everything is aready done, its a matter of glue some code.
 
 ### BOT setup
 
@@ -78,5 +78,6 @@ It should beep again, signalling it is paired. You can use any number from 0 to 
 
 Ask your BOT to toggle lights
 >toggle light 0
+
 Ask your BOT to turn all off
 >lights off
