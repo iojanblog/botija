@@ -72,11 +72,11 @@ Install the plugin
 
 Hold any light switch button for 5 seconds and wait for a beep, then execute this
 ```shell
-./plug.livolo.sh toggle 3
+./plug.livolo.sh toggle 0
 ```
-It should beep again, signalling it is paired, 
+It should beep again, signalling it is paired. You can use any number from 0 to 9
 
 Ask your BOT to toggle lights
->toggle lights
+>toggle light 0
 Ask your BOT to turn all off
 >lights off
