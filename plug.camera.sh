@@ -18,6 +18,7 @@ function install {
         event_gap 5
         lightswitch 50
         max_movie_time 60
+        stream_localhost off
         webcontrol_port 9999 
         locate_motion_mode on
         output_pictures off
@@ -53,21 +54,31 @@ function start_motion {
 
 
 #
+# stream url logic
+function stream_url {
+    $local_dir/botija.sh send_text "http://`hostname -I | head -1`:8081/"
+}
+
+
+#
 # dispatch commands
 case "$1" in 
 install)
-   shift && install $@
-   ;;
+    shift && install $@
+    ;;
 photo)
-   shift && photo $@
-   ;;   
+    shift && photo $@
+    ;;   
 stop_motion)
-   shift && stop_motion $@
-   ;;   
+    shift && stop_motion $@
+    ;;   
 start_motion)
-   shift && start_motion $@
-   ;;       
+    shift && start_motion $@
+    ;;
+stream_url)
+    shift && stream_url $@
+    ;;         
 *)
    echo "$bl_usage: $0 <$bl_command>"
-   echo "$bl_command_guide photo, stop_motion, start_motion, install"
+   echo "$bl_command_guide photo, stop_motion, start_motion, stream_url, install"
 esac

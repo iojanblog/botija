@@ -50,6 +50,8 @@ function receive {
         $local_dir/plug.status.sh
     elif [ "$normal_text" = "$bc_photo" ]; then
         $local_dir/plug.camera.sh photo
+    elif [ "$normal_text" = "$bc_stream_url" ]; then
+        $local_dir/plug.camera.sh stream_url
     elif [ "$normal_text" = "$bc_start_motion" ]; then
         $local_dir/plug.camera.sh start_motion
     elif [ "$normal_text" = "$bc_stop_motion" ]; then
