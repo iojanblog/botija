@@ -56,7 +56,7 @@ function start_motion {
 #
 # stream url logic
 function stream_url {
-    $local_dir/botija.sh send_text "http://`hostname -I | head -1`:8081/"
+    $local_dir/botija.sh send_text "http://`hostname -I | awk '{print $1}'`:8081/"
 }
 
 
