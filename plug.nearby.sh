@@ -38,7 +38,7 @@ function scan {
             $local_dir/botija.sh send_text "$bl_missing_nearby"
             [ "$nearby_empty_lock" = "true" ] && $local_dir/plug.august.sh lock
             [ "$nearby_empty_start_motion" = "true" ] && $local_dir/plug.camera.sh start_motion
-            [ "$nearby_lights_off" = "true" ] && $local_dir/plug.livolo.sh off
+            [ "$nearby_empty_lights_off" = "true" ] && $local_dir/plug.livolo.sh off
         fi
     fi
 }
