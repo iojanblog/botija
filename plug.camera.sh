@@ -41,7 +41,7 @@ function photo {
 # stop motion logic
 function stop_motion {
     curl -s -X GET "http://localhost:9999/0/detection/pause"
-    $local_dir/botija.sh send_text "$bl_control_motion ($?)"
+    $local_dir/botija.sh send_text "$bl_motion_off ($?)"
 }
 
 
@@ -49,7 +49,7 @@ function stop_motion {
 # start motion logic
 function start_motion {
     curl -s -X GET "http://localhost:9999/0/detection/start"
-    $local_dir/botija.sh send_text "$bl_control_motion ($?)"
+    $local_dir/botija.sh send_text "$bl_motion_on ($?)"
 }
 
 
