@@ -34,9 +34,12 @@ function scan {
         found=`cat $tmp_dir/scan.found.out | wc -l`
         prev=`cat $tmp_dir/scan.found.out | wc -l`
 
-        [ "$found" = "0" ] && $local_dir/botija.sh send_text "$bl_missing_nearby"
-        [ "$nearby_empty_lock" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.august.sh lock
-        [ "$nearby_empty_start_motion" = "true" ] && [ "$found" = "0" ] && $local_dir/plug.camera.sh start_motion
+        if [ "$found" = "0" ]; then
+            $local_dir/botija.sh send_text "$bl_missing_nearby"
+            [ "$nearby_empty_lock" = "true" ] && $local_dir/plug.august.sh lock
+            [ "$nearby_empty_start_motion" = "true" ] && $local_dir/plug.camera.sh start_motion
+            [ "$nearby_lights_off" = "true" ] && $local_dir/plug.livolo.sh off
+        fi
     fi
 }
 
