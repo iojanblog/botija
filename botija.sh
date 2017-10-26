@@ -68,6 +68,9 @@ function receive {
         $local_dir/plug.livolo.sh off        
     elif echo "$normal_text" | grep -qE "^$bc_livolo_toggle .*"; then
         $local_dir/plug.livolo.sh toggle `echo "$normal_text" | awk -F"$bc_livolo_toggle " '{print $2}'`
+    elif [ "$normal_text" = "$bc_help" ] || [ "$normal_text" = "/$bc_help" ]; then
+        all_cmd="${bc_status}, ${bc_photo}, ${bc_stream_url}, ${bc_start_motion}, ${bc_stop_motion}, ${bc_upgrade}, ${bc_august_lock}, ${bc_august_unlock}, ${bc_nearby_count}, ${bc_livolo_off}, ${bc_livolo_toggle} #"
+        curl -s -X GET "https://api.telegram.org/bot$token/sendMessage" --data-urlencode "chat_id=$chat_id" --data-urlencode "text=$bl_command_guide $all_cmd" >/dev/null &
     else
         curl -s -X GET "https://api.telegram.org/bot$token/sendMessage" --data-urlencode "chat_id=$chat_id" --data-urlencode "text=$bl_unknown $text" >/dev/null &
     fi    
