@@ -32,13 +32,16 @@ function scan {
 
     if [ "`diff $tmp_dir/scan.found.out $tmp_dir/scan.prev.out 2>/dev/null | wc -l`" -gt "0" ]; then
         found=`cat $tmp_dir/scan.found.out | wc -l`
-        prev=`cat $tmp_dir/scan.found.out | wc -l`
 
         if [ "$found" = "0" ]; then
             $local_dir/botija.sh send_text "$bl_missing_nearby"
             [ "$nearby_empty_lock" = "true" ] && $local_dir/plug.august.sh lock
             [ "$nearby_empty_start_motion" = "true" ] && $local_dir/plug.camera.sh start_motion
             [ "$nearby_empty_lights_off" = "true" ] && $local_dir/plug.livolo.sh off
+        else
+            $local_dir/botija.sh send_text "$bl_found_nearby"
+            [ "$nearby_empty_lock" = "true" ] && $local_dir/plug.august.sh unlock
+            [ "$nearby_empty_start_motion" = "true" ] && $local_dir/plug.camera.sh stop_motion
         fi
     fi
 }
